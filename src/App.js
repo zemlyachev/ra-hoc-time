@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+import moment from "moment";
 
 function DateTime(props) {
   return <p className="date">{props.date}</p>;
+}
+
+function DateTimePretty(props) {
+  const makeDateTimePretty = (date) => {
+    return moment(date).fromNow();
+  };
+
+  return <DateTime date={makeDateTimePretty(props.date)} />;
 }
 
 function Video(props) {
@@ -13,7 +22,7 @@ function Video(props) {
         allow="autoplay; encrypted-media"
         allowfullscreen
       ></iframe>
-      <DateTime date={props.date} />
+      <DateTimePretty date={props.date} />
     </div>
   );
 }
